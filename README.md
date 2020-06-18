@@ -23,3 +23,7 @@ In a terminal or command window, navigate to the top-level project directory and
 ```
 $ python app.py
 ```
+
+## Inspiration
+[Krish Naik](https://www.youtube.com/user/krishnaik06/videos)
+[Nitin Kaushik](https://www.youtube.com/channel/UCv6Uw36LRbYnX4HDxKPguKg/videos)
