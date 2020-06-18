@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 18 09:58:53 2020
+Created on Thu Apr 18 09:58:53 2020
 
 @author: kush
 """
@@ -13,8 +13,8 @@ import pickle
 
 IMAGE_FOLDER = os.path.join('static', 'img_pool')
 
-rbf = pickle.load(open('/Users/kush/Downloads/Emotion_detection_RF_Flask/rbf_model.pkl','rb'))
-cv = pickle.load(open('/Users/kush/Downloads/Emotion_detection_RF_Flask/cv_transform.pkl','rb'))
+rbf = pickle.load(open('rbf_model.pkl','rb'))
+cv = pickle.load(open('cv_transform.pkl','rb'))
 
 app = Flask(__name__)
 
