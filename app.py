@@ -9,8 +9,8 @@ Created on Thu Apr 18 09:58:53 2020
 from flask import Flask,render_template,request
 import os
 import pickle
-
-
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import CountVectorizer
 IMAGE_FOLDER = os.path.join('static', 'img_pool')
 
 rbf = pickle.load(open('rbf_model.pkl','rb'))
