@@ -2,6 +2,9 @@
 
 This project classifies the text into one of the seven emotion classes. The project has been created using ISEAR dataset and machine learning based Random Forest Classifier.
 
+## Demo
+Link - https://emotion-detection-ml.herokuapp.com
+
 ## Install
 
 * Numpy
