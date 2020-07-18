@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Apr 18 09:58:53 2020
+Created on Thu Jun 18 09:58:53 2020
 
 @author: kush
 """
 
-from flask import Flask,render_template,request
+from flask import Flask, render_template, flash, request, url_for, redirect, session
 import os
 import pickle
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.feature_extraction.text import CountVectorizer
-IMAGE_FOLDER = os.path.join('static', 'img_pool')
+
 
 rbf = pickle.load(open('rbf_model.pkl','rb'))
 cv = pickle.load(open('cv_transform.pkl','rb'))
 
 app = Flask(__name__)
-
-app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
 
 
 @app.route('/')
@@ -35,27 +31,21 @@ def emotion_predict():
         probability = rbf.predict_proba(cvect)
         probability = probability.max()
         if emotion_pred == 'anger':
-            emotion = 'Anger'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'anger.png')
+            emotion = 'Anger 😡'
+            
         elif emotion_pred == 'disgust':
-            emotion = 'Disgust'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'disgust.png')
+            emotion = 'Disgust 😖'
         elif emotion_pred =='fear':
-            emotion = 'Fear'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'fear.png')
+            emotion = 'Fear 😨'
         elif emotion_pred == 'guilt':
-            emotion  = 'Guilt'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'guilt.png')
+            emotion  = 'Guilt 🙄'
         elif emotion_pred == 'joy':
-            emotion = 'Joy'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'joy.png')
+            emotion = 'Joy 😃'
         elif emotion_pred == 'sadness':
-            emotion  ='Sadness'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'sadness.png')
+            emotion  ='Sadness 😥'
         else:
-            emotion = 'Shame'
-            image = os.path.join(app.config['UPLOAD_FOLDER'], 'shame.png')
-    return render_template('home.html', text=text, emotion=emotion, probability=probability,image=image)
+            emotion = 'Shame 🙁'
+    return render_template('home.html', text=text, emotion=emotion, probability=probability)
 
 if __name__ == '__main__':
     app.run()
