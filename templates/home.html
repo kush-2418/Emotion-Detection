@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang='en' class=''>
+<!DOCTYPE html>
+<html>
 <head>
   <!--<script src="https://kit.fontawesome.com/f75621122b.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -6,54 +7,122 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styling.css')}}">
   <script src="https://kit.fontawesome.com/f75621122b.js"></script>
   <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
   <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/tobewan77/pen/xrwGdy?limit=all&page=4&q=nav+tabs" />
 
 
-</head><body>
-    
-        <h1><div style="text-align:center"><font color="blue">TEXT EMOTION ANALYSIS</font></div></h1>
-        <hr>
-        </br>
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #3CBC8D;
+  color: black;
+  opacity: 0.7;
+  font-size: 20px;
+ 
+  
+  
+}
 
-    <!-----------------Sentiment Analysis Code Start Here-------------------------->
 
-    <div class='container'>
-        <div class='row'>
-          <div class='col-6'>
 
-			<h2>Enter the Text to get the Emotions</h2>
-		</div>
-	  </div>
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size:20px;
+  width: 150px;
+    margin: 0;
+  position: absolute;
+  top: 30%;
 
-	  <div class="row">
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+
+}
+
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+h1 {
+text-align: center;
+color: purple;
+font-weight:bold;
+}
+
+h2 {
+color: Green;
+font-weight:bold;
+
+font-family: "Lucida Console", Courier, monospace;
+}
+
+.alert-primary {
+
+background-color: white;
+border: 2px solid #4CAF50;
+border-radius: 5px;
+
+font-size: 20px;
+text-align: center;
+}
+
+.alert-primary1{
+  width: 120px;
+  height: 120px;
+border : 2px solid #4CAF50;
+
+
+}
+body {
+  background-image: url({{ url_for('static', filename='back.jpg') }});
+
+  background-repeat: repeat;
+  
+}
+</style>
+</head>
+
+<body>
+
+<h1> TEXT EMOTION ANALYSIS </h1>
+<p>&#160;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>
+
+<form action="/sentiment_analysis_prediction" method="post" enctype="multipart/form-data">  <label for="fname"><h2> Enter Text To Predict The Sentiments</h2></label>
+  <input type="text" id="fname" name="text">
+  <p>&#160;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>
+<button class="button button1">Predict</button>
+  <p>&#160;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>
+
+</form>
+
+
+<div class="row">
+
 
         <div class="col-md-6">
-          <div class = "input-group">
-             <span class = "input-group-addon">Enter Text Here</span>
-             <form action="/emotion_predict" method="post" enctype="multipart/form-data">
-             <input name = "text" class = "form-control" placeholder = "Text">
-             <input type="submit">
-             </form>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <h1>Emotion</h1>
+          <h2 style="color: brown;text-align: center"">Emotion</h2>
           <div class="alert alert-primary" role="alert">
             {% if probability %}
-              {{ emotion}}
+              {{ emotion }}
                {% endif %}
           </div>
         </div>
 
-        <div class="col-md-3">
-          <h1>Probability</h1>
+        <div class="col-md-6">
+          <h2 style="color: brown;text-align: center">Probability</h2>
           <div class="alert alert-primary" role="alert">
             {% if probability %}
               {{ probability }}
@@ -61,16 +130,7 @@
           </div>
         </div>
 
-        <!--Image -->
-            <div class="col-sm-6"></div>
-              {% if probability %}
-                <div class="col-sm-2"><h1>Emotion</h1>
-                <img src="{{ image }}" alt="Image">
-              {% endif %}
-            </div>
-        <!--Image-->
-      </div>
-    </div>
-      <!-------------Sentiment Analysis Code End------------------------->
-	  
-</body></html>
+<div/>
+
+</body>
+</html>
